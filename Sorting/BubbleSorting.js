@@ -22,30 +22,3 @@ console.log(bubbleSorting([9, 3, 3, 5, 65, 6, 7, 87, 8, 1,2,3,3,3,2,2,1,2,3,4,6,
 
 // Time Complexity: O(N2)
 // Auxiliary Space: O(1)
-
-/**
- * @param {string} s
- * @return {number}
- */
-var lengthOfLongestSubstring = function(s) {
-    let maxLength = 0;
-    let charMap = new Map(); // Map to store characters and their indices
-    
-    for (let start = 0, end = 0; end < s.length; end++) {
-        let currentChar = s[end];
-        
-        // If the current character is already in the map and its index is within the current window,
-        // move the start pointer to the right of the last occurrence of the current character.
-        if (charMap.has(currentChar)) {
-            start = Math.max(charMap.get(currentChar) + 1, start);
-        }
-        
-        // Update the maximum length of the substring without repeating characters
-        maxLength = Math.max(maxLength, end - start + 1);
-        
-        // Update the index of the current character in the map
-        charMap.set(currentChar, end);
-    }
-    
-    return maxLength;
-};
